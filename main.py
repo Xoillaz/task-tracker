@@ -1,22 +1,21 @@
 from sys import argv
-import lib
+from lib import issues
 
 # todo: handle errors
-script, action = argv
+script, action, description = argv
 
-if action == "add" or action == '1' :
-    print("Task added successfully (ID: {})")
-elif action == "update" or action == '2' :
-    print("Task updated successfully: {}")
-elif action == "delete" or action == '3' :
-    print("Task deleted successfully (ID: {})")
-elif action == "mark-in-progress" or action == '4' :
-    print("Task marked in progress (ID: {})")
-elif action == "mark-done" or action == '5' :
-    print("Task marked done (ID: {})")
-elif action == "list" or action == '0' :
-    print("1 - {}: {}")
-    print("2 - {}: {}")
-    print("3 - {}: {}")
+if action == "add":
+    Issues.add(description)
+elif action == "update":
+    Issues.mv(task_id, description)
+elif action == "delete":
+    Issues.rm(task_id)
+elif action == "mark-in-progress":
+    Issues.mark(task_id, "in progress")
+elif action == "mark-done":
+    Issues.mark(task_id, "done")
+elif action == "list":
+    status = description
+    Issues.ls(status)
 else:
     print("Invalid action, re-type please!")
