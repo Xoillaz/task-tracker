@@ -1,7 +1,7 @@
 from sys import argv
 import lib
 
-# handle different counts
+# todo: handle errors
 script, action = argv
 
 if action == "add" or action == '1' :
