@@ -3,7 +3,15 @@ import json
 
 class Issues:
     def add(description):
-        pass
+        with open("log.json", 'r+') as file:
+            # Data is an array.
+            data = json.loads(file.read())
+            task_id = len(data) + 1
+            data.append(Task(description, task_id).to_dict())
+            
+            file.seek(0)
+            json.dump(data, file, indent=4)
+            file.truncate()
         log("added", task_id)
 
     def mv(task_id, description):
@@ -37,8 +45,17 @@ class Task:
         self.createAt = now()
         self.updateAt = now()
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "status": self.status,
+            "createAt": self.createAt,
+            "updateAt": self.updateAt
+        }
+
 def now():
-    return datetime.now().strftime("%H-%M-%S")
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 def log(change, task_id):
     print(f"Task {change} (ID: {task_id})")

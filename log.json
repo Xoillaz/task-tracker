@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "description": "Retire",
+        "status": "todo",
+        "createAt": "2024-10-16 22:18:15",
+        "updateAt": "2024-10-16 22:18:15"
+    },
+    {
+        "id": 2,
+        "description": "Feat: Add, Update and Delete tasks",
+        "status": "todo",
+        "createAt": "2024-10-16 22:19:15",
+        "updateAt": "2024-10-16 22:19:15"
+    },
+    {
+        "id": 3,
+        "description": "Feat: Mark task status",
+        "status": "todo",
+        "createAt": "2024-10-16 22:19:35",
+        "updateAt": "2024-10-16 22:19:35"
+    },
+    {
+        "id": 4,
+        "description": "Feat: List task with status",
+        "status": "todo",
+        "createAt": "2024-10-16 22:19:57",
+        "updateAt": "2024-10-16 22:19:57"
+    }
+]

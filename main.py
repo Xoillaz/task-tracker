@@ -1,5 +1,5 @@
 from sys import argv
-from lib import issues
+from lib import Issues
 
 # todo: handle errors
 script, action, description = argv
