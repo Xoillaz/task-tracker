@@ -12,12 +12,14 @@ class Issues:
     def mv(tid, detail):
         data, i = load(), int(tid)-1
         data[i]['detail'] = detail
+        data[i]['updateAt'] = now()
         save(data)
         log("updated", tid)
 
     def mk(tid, status):
         data, i = load(), int(tid)-1
         data[i]['status'] = status if status!="in-progress" else "-ing"
+        data[i]['updateAt'] = now()
         save(data)
         if status == "deleted":
             log(f"{status}", tid)
