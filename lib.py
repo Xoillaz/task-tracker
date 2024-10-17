@@ -2,53 +2,55 @@ from datetime import datetime
 import json
 
 class Issues:
-    def add(description):
-        with open("log.json", 'r+') as file:
-            # Data is an array.
-            data = json.loads(file.read())
-            task_id = len(data) + 1
-            data.append(Task(description, task_id).to_dict())
-            
-            file.seek(0)
-            json.dump(data, file, indent=4)
-            file.truncate()
-        log("added", task_id)
+    def add(detail):
+        data = load()
+        tid = len(data) + 1
+        data.append(Task(detail, tid).to_dict())
+        save(data)
+        log("added", tid)
 
-    def mv(task_id, description):
-        pass
-        log("updated", task_id)
+    def mv(tid, detail):
+        data, i = load(), int(tid)-1
+        data[i]['detail'] = detail
+        save(data)
+        log("updated", tid)
 
-    def rm(task_id):
-        pass
-        log("deleted", task_id)
-
-    def mark(task_id, status):
-        if status == "done":
-            pass
-        else: # case: in-progress
-            pass
-        log(f"marked {status}", task_id)
+    def mk(tid, status):
+        data, i = load(), int(tid)-1
+        data[i]['status'] = status if status!="in-progress" else "-ing"
+        save(data)
+        if status == "deleted":
+            log(f"{status}", tid)
+        else: 
+            log(f"marked {status}", tid)
     
     def ls(status):
-        if status == "todo":
-            pass
-        elif status == "in-progress":
-            pass
+        data = load()
+        if status == "all":
+            for i in data:
+                print("{} {}\t{}\t{}".format(
+                    i['tid'],
+                    i['status'],
+                    i['updateAt'],
+                    i['detail'])) if i['status'] != "deleted" else 0
         else:
-            pass
-
+            for i in data:
+                print("{} {}\t{}".format(
+                    i['tid'],
+                    i['updateAt'],
+                    i['detail'])) if i['status'] == status else 0
 class Task:
-    def __init__(self, description, task_id):
-        self.id = task_id
-        self.description = description
+    def __init__(self, detail, tid):
+        self.tid = tid
+        self.detail = detail
         self.status = "todo"
         self.createAt = now()
         self.updateAt = now()
 
     def to_dict(self):
         return {
-            "id": self.id,
-            "description": self.description,
+            "tid": self.tid,
+            "detail": self.detail,
             "status": self.status,
             "createAt": self.createAt,
             "updateAt": self.updateAt
@@ -57,5 +59,16 @@ class Task:
 def now():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-def log(change, task_id):
-    print(f"Task {change} (ID: {task_id})")
+def load():
+    with open("log.json", 'r') as file:
+        data = json.load(file)
+    return data
+
+def save(data):
+    with open("log.json", 'w') as file:
+        file.seek(0)
+        json.dump(data, file, indent=4)
+        file.truncate()
+
+def log(change, tid):
+    print(f"Task {change} (ID: {tid})")

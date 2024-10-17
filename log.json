@@ -1,30 +1,51 @@
 [
     {
-        "id": 1,
-        "description": "Retire",
-        "status": "todo",
+        "tid": 1,
+        "detail": "Retire",
+        "status": "-ing",
         "createAt": "2024-10-16 22:18:15",
         "updateAt": "2024-10-16 22:18:15"
     },
     {
-        "id": 2,
-        "description": "Feat: Add, Update and Delete tasks",
-        "status": "todo",
+        "tid": 2,
+        "detail": "Feat: Add, Update and Delete tasks",
+        "status": "done",
         "createAt": "2024-10-16 22:19:15",
         "updateAt": "2024-10-16 22:19:15"
     },
     {
-        "id": 3,
-        "description": "Feat: Mark task status",
-        "status": "todo",
+        "tid": 3,
+        "detail": "Feat: Mark task status",
+        "status": "done",
         "createAt": "2024-10-16 22:19:35",
         "updateAt": "2024-10-16 22:19:35"
     },
     {
-        "id": 4,
-        "description": "Feat: List task with status",
-        "status": "todo",
+        "tid": 4,
+        "detail": "Feat: List task with status",
+        "status": "done",
         "createAt": "2024-10-16 22:19:57",
         "updateAt": "2024-10-16 22:19:57"
+    },
+    {
+        "tid": 5,
+        "detail": "test: Update Add",
+        "status": "deleted",
+        "createAt": "2024-10-17 14:47:02",
+        "updateAt": "2024-10-17 14:47:02"
+    },
+    {
+        "tid": 6,
+        "detail": "test: Update Update",
+        "status": "deleted",
+        "createAt": "2024-10-17 22:48:01",
+        "updateAt": "2024-10-17 22:48:01"
+    },
+    {
+        "tid": 7,
+        "detail": "to-Sleep",
+        "status": "deleted",
+        "createAt": "2024-10-17 23:33:46",
+        "updateAt": "2024-10-17 23:33:46"
     }
 ]
